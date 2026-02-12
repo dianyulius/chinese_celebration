@@ -186,6 +186,7 @@
             padding: 60px 40px;
             border-radius: 40px;
             position: relative;
+            overflow: hidden;
         }
 
         /* Thematic Section Backgrounds */
@@ -193,7 +194,9 @@
             --section-accent: #e5484d;
             --section-soft: #fdebec;
             /* Soft Red/Pink for New Year */
-            background: linear-gradient(180deg, rgba(229, 72, 77, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+            background:
+                linear-gradient(180deg, rgba(253, 235, 236, 0.88) 0%, rgba(255, 255, 255, 0.82) 100%),
+                url('https://raw.githubusercontent.com/dianyulius/chinese_celebration/main/images/spring-festival.jpg') center / cover no-repeat;
             border: 1px solid rgba(229, 72, 77, 0.14);
         }
 
@@ -201,7 +204,9 @@
             --section-accent: #5a5fd6;
             --section-soft: #eef0ff;
             /* Cool Blue/Indigo for Moon */
-            background: linear-gradient(180deg, rgba(90, 95, 214, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+            background:
+                linear-gradient(180deg, rgba(238, 240, 255, 0.88) 0%, rgba(255, 255, 255, 0.82) 100%),
+                url('https://raw.githubusercontent.com/dianyulius/chinese_celebration/main/images/mid-autumn.jpg') center / cover no-repeat;
             border: 1px solid rgba(90, 95, 214, 0.14);
         }
 
@@ -209,7 +214,9 @@
             --section-accent: #1f9e6d;
             --section-soft: #e8f8f1;
             /* Fresh Green/Teal for Nature */
-            background: linear-gradient(180deg, rgba(31, 158, 109, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+            background:
+                linear-gradient(180deg, rgba(232, 248, 241, 0.9) 0%, rgba(255, 255, 255, 0.82) 100%),
+                url('https://raw.githubusercontent.com/dianyulius/chinese_celebration/main/images/dragon-boat.jpg') center / cover no-repeat;
             border: 1px solid rgba(31, 158, 109, 0.14);
         }
 
@@ -263,9 +270,11 @@
         }
 
         .card {
-            background: var(--card-bg);
+            background:
+                linear-gradient(180deg, color-mix(in srgb, var(--section-soft) 35%, #ffffff 65%) 0%, #ffffff 70%);
             border-radius: 28px;
             padding: 30px;
+            border: 1px solid color-mix(in srgb, var(--section-accent) 18%, #ffffff 82%);
             box-shadow: 0 4px 24px rgba(0,0,0,0.04);
             transition: all 0.8s var(--transition-curve);
             opacity: 0;
@@ -289,28 +298,30 @@
 
         .card:hover {
             transform: translateY(-8px) scale(1.02) !important;
-            box-shadow: 0 20px 40px rgba(255, 128, 155, 0.15);
+            box-shadow: 0 20px 40px color-mix(in srgb, var(--section-accent) 26%, transparent 74%);
         }
 
         .card.wide {
             grid-column: 1 / -1;
         }
 
-        .card.image-card {
-            padding: 0;
-            height: 400px;
-            position: relative;
+        .video-card {
+            padding: 18px;
         }
 
-        .card-img {
+        .video-wrap {
+            width: 100%;
+            border-radius: 18px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+            margin-top: 12px;
+        }
+
+        .video-wrap iframe {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .card:hover .card-img {
-            transform: scale(1.05);
+            border: 0;
         }
 
         .card-title {
@@ -329,6 +340,19 @@
             border-radius: 12px;
             font-size: 0.9em;
             color: var(--section-accent);
+        }
+
+        .section-note {
+            margin-top: 20px;
+            background: var(--section-soft);
+            border: 1px solid color-mix(in srgb, var(--section-accent) 22%, #ffffff 78%);
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .section-note small {
+            color: var(--section-accent);
+            font-weight: bold;
         }
 
         #spring .timeline-item { border-left-color: rgba(229, 72, 77, 0.28); }
@@ -458,7 +482,7 @@
 
     <header>
     <div class="hero-bg">
-        <img src="images/home-banner.jpg" alt="Chinese celebration banner artwork">
+        <img src="https://raw.githubusercontent.com/dianyulius/chinese_celebration/main/images/home-banner.jpg" alt="Chinese celebration banner artwork">
     </div>
     <div class="hero-overlay"></div>
 
@@ -477,8 +501,11 @@
         </div>
 
         <div class="bento-grid">
-            <div class="card wide image-card">
-                <img src="images/spring-festival.jpg" class="card-img" alt="Chinese New Year Lanterns">
+            <div class="card wide video-card">
+                <h3 class="card-title"><i class="ri-youtube-fill"></i> Chinese New Year Video</h3>
+                <div class="video-wrap">
+                    <iframe src="https://www.youtube.com/embed/giYX7bkzW98" title="Chinese New Year video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
             </div>
 
             <div class="card">
@@ -509,6 +536,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -521,8 +549,11 @@
         </div>
 
         <div class="bento-grid">
-            <div class="card wide image-card">
-                <img src="images/mid-autumn.jpg" class="card-img" alt="Mooncakes and Tea">
+            <div class="card wide video-card">
+                <h3 class="card-title"><i class="ri-youtube-fill"></i> Mid-Autumn Video</h3>
+                <div class="video-wrap">
+                    <iframe src="https://www.youtube.com/embed?listType=search&list=mid-autumn%20festival" title="Mid-Autumn Festival video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
             </div>
 
             <div class="card">
@@ -556,8 +587,11 @@
         </div>
 
         <div class="bento-grid">
-            <div class="card wide image-card">
-                <img src="images/dragon-boat.jpg" class="card-img" alt="Dragon Boat Racing">
+            <div class="card wide video-card">
+                <h3 class="card-title"><i class="ri-youtube-fill"></i> Dragon Boat Video</h3>
+                <div class="video-wrap">
+                    <iframe src="https://www.youtube.com/embed?listType=search&list=dragon%20boat%20festival" title="Dragon Boat Festival video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
             </div>
 
             <div class="card">
@@ -578,8 +612,8 @@
                 <h3 class="card-title"><i class="ri-honour-fill"></i> Memorial</h3>
                 <div class="card-content">
                     <p>Often linked to remembering Qu Yuan (a poet and minister), plus themes of loyalty, community spirit, and health protection.</p>
-                    <div style="margin-top:20px; background:var(--soft-pink); padding:10px; border-radius:12px;">
-                        <small style="color:var(--primary-pink); font-weight:bold;">DID YOU KNOW?</small>
+                    <div class="section-note">
+                        <small>DID YOU KNOW?</small>
                         <p style="font-size:0.9rem;">One of the most energetic festivals visually—perfect for photography.</p>
                     </div>
                 </div>
