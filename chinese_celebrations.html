@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 3 Chinese Celebrations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Crushed&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ff809b; /* Softened pink */
+            --soft-pink: #ffeef2;
+            --background: #fff8f9; /* Warm soft pink bg */
+            --text-main: #4a3b40;
+            --text-secondary: #8d7a82;
+            --card-bg: #ffffff;
+            --glass-bg: rgba(255, 240, 245, 0.7);
+            --transition-curve: cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncier */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-content {
+            max-width: 980px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-left: 24px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-links a i {
+            font-size: 1.1em;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-pink);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+        }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 40px;
+            background: var(--soft-pink);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 110%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.1s linear;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 45%, var(--background) 100%),
+                radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.25), transparent 60%);
+        }
+
+        h1 {
+            font-family: 'Charm', cursive;
+            font-size: clamp(4rem, 10vw, 6rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; /* Apple easing */
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            text-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+            padding-bottom: 10px; /* Prevent descender clipping */
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 500;
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            animation: bounce 2s infinite;
+            color: rgba(255, 255, 255, 0.95);
+            z-index: 2;
+        }
+
+        /* Main Content Structure */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .festival-section {
+            --section-accent: var(--primary-pink);
+            --section-soft: var(--soft-pink);
+            margin-bottom: 10rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s var(--transition-curve);
+            padding: 60px 40px;
+            border-radius: 40px;
+            position: relative;
+        }
+
+        /* Thematic Section Backgrounds */
+        #spring {
+            --section-accent: #e5484d;
+            --section-soft: #fdebec;
+            /* Soft Red/Pink for New Year */
+            background: linear-gradient(180deg, rgba(229, 72, 77, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+            border: 1px solid rgba(229, 72, 77, 0.14);
+        }
+
+        #mid-autumn {
+            --section-accent: #5a5fd6;
+            --section-soft: #eef0ff;
+            /* Cool Blue/Indigo for Moon */
+            background: linear-gradient(180deg, rgba(90, 95, 214, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+            border: 1px solid rgba(90, 95, 214, 0.14);
+        }
+
+        #dragon-boat {
+            --section-accent: #1f9e6d;
+            --section-soft: #e8f8f1;
+            /* Fresh Green/Teal for Nature */
+            background: linear-gradient(180deg, rgba(31, 158, 109, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+            border: 1px solid rgba(31, 158, 109, 0.14);
+        }
+
+        @media (max-width: 768px) {
+            .festival-section { padding: 30px 20px; }
+        }
+
+        .festival-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .section-tag {
+            font-family: 'Crushed', cursive;
+            color: var(--section-accent);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        h2 {
+            font-family: 'Charm', cursive;
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--section-accent);
+        }
+
+        .hook-text {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        /* Bento Grid Layout */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 28px;
+            padding: 30px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+            transition: all 0.8s var(--transition-curve);
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .festival-section.visible .card {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Staggered Animation Delays */
+        .festival-section.visible .card:nth-child(1) { transition-delay: 0.1s; }
+        .festival-section.visible .card:nth-child(2) { transition-delay: 0.2s; }
+        .festival-section.visible .card:nth-child(3) { transition-delay: 0.3s; }
+        .festival-section.visible .card:nth-child(4) { transition-delay: 0.4s; }
+        .festival-section.visible .card:nth-child(5) { transition-delay: 0.5s; }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02) !important;
+            box-shadow: 0 20px 40px rgba(255, 128, 155, 0.15);
+        }
+
+        .card.wide {
+            grid-column: 1 / -1;
+        }
+
+        .card.image-card {
+            padding: 0;
+            height: 400px;
+            position: relative;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--section-accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            background: var(--section-soft);
+            padding: 8px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            color: var(--section-accent);
+        }
+
+        #spring .timeline-item { border-left-color: rgba(229, 72, 77, 0.28); }
+        #mid-autumn .timeline-item { border-left-color: rgba(90, 95, 214, 0.28); }
+        #dragon-boat .timeline-item { border-left-color: rgba(31, 158, 109, 0.28); }
+
+        .card-content {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+        
+        .timeline-item {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid var(--soft-pink);
+        }
+        
+        .timeline-phase {
+            font-weight: 600;
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--primary-pink);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .symbol-badge {
+            display: inline-block;
+            background: var(--soft-pink);
+            color: var(--primary-pink);
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 128, 155, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: all 0.4s var(--transition-curve);
+            z-index: 999;
+        }
+
+        .scroll-top-btn.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .scroll-top-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 128, 155, 0.5);
+            background: #ff6b8b;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* Footer */
+        footer {
+            background: #f5f5f7;
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-content">
+        <a href="#" class="logo"><i class="ri-lantern-fill" style="color:var(--primary-pink); margin-right:8px;"></i>Celebrations</a>
+        <div class="nav-links">
+            <a href="#spring"><i class="ri-fire-fill"></i> Spring Festival</a>
+            <a href="#mid-autumn"><i class="ri-moon-fill"></i> Mid-Autumn</a>
+            <a href="#dragon-boat"><i class="ri-ship-2-fill"></i> Dragon Boat</a>
+        </div>
+    </div>
+</nav>
+
+    <header>
+    <div class="hero-bg">
+        <img src="home.jpg" alt="Chinese celebration banner artwork">
+    </div>
+    <div class="hero-overlay"></div>
+
+    <h1>The Living Traditions</h1>
+    <p class="hero-subtitle">Discover the stories, timelines, and meanings behind China's top three celebrations.</p>
+    <div class="scroll-indicator">↓</div>
+</header>
+
+<main>
+    <!-- SPRING FESTIVAL -->
+    <section id="spring" class="festival-section">
+        <div class="section-header">
+            <span class="section-tag">Most Important</span>
+            <h2>Spring Festival (Chinese New Year) <span style="font-weight:400; opacity:0.6;">· 春节</span></h2>
+            <p class="hook-text">The night is loud with fireworks, red lanterns glow on every street, and families rush home for the biggest reunion of the year.</p>
+        </div>
+
+        <div class="bento-grid">
+            <div class="card wide image-card">
+                <img src="https://images.unsplash.com/photo-1548685913-fe6678babe8d?q=80&w=2600&auto=format&fit=crop" class="card-img" alt="Chinese New Year Lanterns">
+            </div>
+
+            <div class="card">
+                <h3 class="card-title"><i class="ri-time-line"></i> Timeline</h3>
+                <div class="card-content">
+                    <div class="timeline-item">
+                        <span class="timeline-phase">Before</span>
+                        Cleaning house to sweep away bad luck, buying new clothes, prepping lucky dishes.
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-phase">During</span>
+                        Reunion dinner, Red envelopes (hongbao), watching Galas, staying up late (Shousui).
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-phase">After</span>
+                        Temple fairs and the Lantern Festival ending the season.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title"><i class="ri-heart-pulse-fill"></i> Why it Matters</h3>
+                <div class="card-content" style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
+                    <p>It represents a fresh start, good fortune, and the strengthening of family ties above all else.</p>
+                    <div style="margin-top:20px;">
+                        <strong>Fun Fact:</strong>
+                        <p style="font-size:0.9rem; margin-top:5px;">The "Nian" monster is said to be afraid of loud sounds and the color red.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MID-AUTUMN FESTIVAL -->
+    <section id="mid-autumn" class="festival-section">
+        <div class="section-header">
+            <span class="section-tag">Reunion & Harmony</span>
+            <h2>Mid-Autumn Festival <span style="font-weight:400; opacity:0.6;">· 中秋节</span></h2>
+            <p class="hook-text">A bright full moon hangs in the sky while families gather outside with tea and mooncakes, sharing stories under the same moon.</p>
+        </div>
+
+        <div class="bento-grid">
+            <div class="card wide image-card">
+                <img src="https://images.unsplash.com/photo-1632125944760-2646399a9df5?q=80&w=2600&auto=format&fit=crop" class="card-img" alt="Mooncakes and Tea">
+            </div>
+
+            <div class="card">
+                <h3 class="card-title"><i class="ri-goblet-fill"></i> The Experience</h3>
+                <div class="timeline-item">
+                    <span class="timeline-phase">During the Night</span>
+                    Family gatherings for dinner and "moon viewing." Sharing mooncakes cut into slices to symbolize unity.
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-phase">Traditions</span>
+                    Kids playing with lanterns, offerings to the moon, and sharing mooncake gift boxes with friends.
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title"><i class="ri-book-open-fill"></i> Myth & Meaning</h3>
+                <div class="card-content">
+                    <p><strong>Meaning:</strong> Gratitude and wishing loved ones well, even if they are far away.</p>
+                    <p style="margin-top:15px"><strong>Legend:</strong> The story of Chang’e flying to the moon is the most famous myth associated with this night.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DRAGON BOAT FESTIVAL -->
+    <section id="dragon-boat" class="festival-section">
+        <div class="section-header">
+            <span class="section-tag">Energy & Spirit</span>
+            <h2>Dragon Boat Festival <span style="font-weight:400; opacity:0.6;">· 端午节</span></h2>
+            <p class="hook-text">Drums thunder across the river as dragon boats race forward, while the air smells of bamboo leaves and sticky rice dumplings.</p>
+        </div>
+
+        <div class="bento-grid">
+            <div class="card wide image-card">
+                <img src="https://images.unsplash.com/photo-1598000373408-c006b528a4be?q=80&w=2600&auto=format&fit=crop" class="card-img" alt="Dragon Boat Racing">
+            </div>
+
+            <div class="card">
+                <h3 class="card-title"><i class="ri-flag-fill"></i> Action Plan</h3>
+                <div class="card-content">
+                    <div class="timeline-item">
+                        <span class="timeline-phase">Before</span>
+                        Teams practice racing; families prepare ingredients for Zongzi. Protection herbs hung at doors.
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-phase">The Race</span>
+                        Dragon boat races featuring teamwork, speed, and thunderous drums.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title"><i class="ri-honour-fill"></i> Memorial</h3>
+                <div class="card-content">
+                    <p>Often linked to remembering Qu Yuan (a poet and minister), plus themes of loyalty, community spirit, and health protection.</p>
+                    <div style="margin-top:20px; background:var(--soft-pink); padding:10px; border-radius:12px;">
+                        <small style="color:var(--primary-pink); font-weight:bold;">DID YOU KNOW?</small>
+                        <p style="font-size:0.9rem;">One of the most energetic festivals visually—perfect for photography.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<button class="scroll-top-btn" aria-label="Scroll to top">
+    <i class="ri-arrow-up-line"></i>
+</button>
+
+<script>
+    // 1. Intersection Observer for Scroll Animations (Staggered Reveal)
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.festival-section').forEach(section => {
+        observer.observe(section);
+    });
+
+    // 2. Smooth Scroll for Nav Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // 3. Apple-style "Alive" 3D Tilt Effect on Cards
+    const cards = document.querySelectorAll('.card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Calculate rotation details
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * -5; // Max rotation deg
+            const rotateY = ((x - centerX) / centerX) * 5;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            card.style.transition = 'transform 0.1s ease'; // Fast response
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            card.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)'; // Smooth return
+        });
+    });
+
+    // 4. Parallax & Dynamic Nav & Scroll Top Logic
+    const scrollTopBtn = document.querySelector('.scroll-top-btn');
+    const nav = document.querySelector('nav');
+    const heroBg = document.querySelector('header img');
+
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        
+        // Parallax
+        if (heroBg) {
+            heroBg.style.transform = `translateY(${scrolled * 0.4}px) scale(1.1)`;
+        }
+        
+        // Dynamic Nav
+        if (scrolled > 50) {
+            nav.style.background = 'rgba(255, 255, 255, 0.85)';
+            nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.05)';
+        } else {
+            nav.style.background = 'rgba(255, 255, 255, 0.5)';
+            nav.style.boxShadow = 'none';
+        }
+
+        // Show/Hide Scroll to Top Button
+        if (scrolled > 500) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+
+</body>
+</html>
