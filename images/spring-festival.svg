@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Spring Festival placeholder">
+  <rect width="1200" height="800" fill="#fbe8e8"/>
+  <circle cx="600" cy="400" r="230" fill="#e5484d" fill-opacity="0.18"/>
+  <text x="600" y="390" text-anchor="middle" font-size="62" fill="#9f2f33" font-family="Arial, Helvetica, sans-serif" font-weight="700">Spring Festival</text>
+  <text x="600" y="460" text-anchor="middle" font-size="34" fill="#9f2f33" font-family="Arial, Helvetica, sans-serif">Replace this image</text>
+</svg>

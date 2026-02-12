@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Mid-Autumn placeholder">
+  <rect width="1200" height="800" fill="#ebedff"/>
+  <circle cx="600" cy="350" r="190" fill="#5a5fd6" fill-opacity="0.22"/>
+  <text x="600" y="420" text-anchor="middle" font-size="62" fill="#2f348f" font-family="Arial, Helvetica, sans-serif" font-weight="700">Mid-Autumn Festival</text>
+  <text x="600" y="490" text-anchor="middle" font-size="34" fill="#2f348f" font-family="Arial, Helvetica, sans-serif">Replace this image</text>
+</svg>
