@@ -129,37 +129,41 @@
             inset: 0;
             z-index: 1;
             background:
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 45%, var(--background) 100%),
-                radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.25), transparent 60%);
+                linear-gradient(to bottom,
+                    rgba(10, 6, 14, 0.42) 0%,
+                    rgba(10, 6, 14, 0.28) 50%,
+                    rgba(10, 6, 14, 0.62) 100%);
         }
 
         h1 {
             font-family: 'Charm', cursive;
             font-size: clamp(3rem, 8vw, 5.2rem);
             font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+            margin-bottom: 14px;
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; /* Apple easing */
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             position: relative;
             z-index: 2;
-            color: #b06a78;
-            text-shadow: 0 8px 20px rgba(255, 234, 226, 0.65);
-            padding-bottom: 10px; /* Prevent descender clipping */
+            color: #ffffff;
+            text-shadow: none;
+            padding-bottom: 10px;
         }
 
         .hero-subtitle {
-            font-size: clamp(1rem, 2.8vw, 1.35rem);
-            color: #b06a78;
-            font-weight: 500;
-            max-width: 680px;
+            font-size: clamp(0.95rem, 2.4vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.78);
+            font-weight: 400;
+            max-width: 560px;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
             position: relative;
             z-index: 2;
-            text-shadow: 0 6px 16px rgba(255, 234, 226, 0.65);
+            text-shadow: none;
+            letter-spacing: 0.01em;
+            line-height: 1.6;
         }
 
         .scroll-indicator {
@@ -172,36 +176,36 @@
 
         .start-btn {
             position: absolute;
-            bottom: 34px;
+            bottom: 36px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 3;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
             text-decoration: none;
-            color: #fff;
-            background: rgba(255, 255, 255, 0.18);
-            border: 1px solid rgba(255, 255, 255, 0.45);
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            padding: 10px 16px;
-            border-radius: 999px;
-            font-size: 0.92rem;
-            font-weight: 600;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
-            transition: transform 0.3s ease, background 0.3s ease;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
             animation: floatPulse 2.3s ease-in-out infinite;
         }
 
         .start-btn i {
-            font-size: 1.05rem;
+            font-size: 1.2rem;
             animation: arrowDrop 1.2s ease-in-out infinite;
         }
 
         .start-btn:hover {
-            transform: translateX(-50%) translateY(-3px);
-            background: rgba(255, 255, 255, 0.26);
+            transform: translateX(-50%) translateY(-4px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
         }
 
         /* Main Content Structure */
@@ -438,28 +442,19 @@
             z-index: 2;
         }
 
-        .panel-slider .panel-card {
+        .panel-slider .canva-embed-wrap {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .panel-slider .canva-embed-wrap iframe {
             position: absolute;
             inset: 0;
-            opacity: 0;
-            transform: translateX(18px);
-            animation: panelA 9s infinite;
-            min-height: 0;
-        }
-
-        .panel-slider .panel-card:nth-child(2) {
-            animation: panelB 9s infinite;
-        }
-
-        @keyframes panelA {
-            0%, 44% { opacity: 1; transform: translateX(0); }
-            50%, 100% { opacity: 0; transform: translateX(-18px); }
-        }
-
-        @keyframes panelB {
-            0%, 44% { opacity: 0; transform: translateX(18px); }
-            50%, 94% { opacity: 1; transform: translateX(0); }
-            100% { opacity: 0; transform: translateX(-18px); }
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 28px;
         }
 
         @media (max-width: 900px) {
@@ -483,17 +478,9 @@
             }
 
             .panel-slider {
-                display: grid;
-                gap: 14px;
-                overflow: visible;
-            }
-
-            .panel-slider .panel-card {
-                position: relative;
-                inset: auto;
-                opacity: 1;
-                transform: none;
-                animation: none;
+                aspect-ratio: 4 / 3;
+                height: auto;
+                overflow: hidden;
             }
 
             .video-wrap {
@@ -677,8 +664,8 @@
         }
 
         @keyframes floatPulse {
-            0%, 100% { box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16); }
-            50% { box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22); }
+            0%, 100% { box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25); }
+            50% { box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35); }
         }
 
         /* Footer */
@@ -713,7 +700,7 @@
 
     <h1>The Living Traditions</h1>
     <p class="hero-subtitle">Discover the stories, timelines, and meanings behind China's top three celebrations.</p>
-    <a class="start-btn" href="#spring">Start <i class="ri-arrow-down-line"></i></a>
+    <a class="start-btn" href="#spring" aria-label="Start exploring"><i class="ri-arrow-down-line"></i></a>
 </header>
 
 <main>
@@ -728,38 +715,19 @@
         <div class="bento-grid">
             <div class="card video-card">
                 <div class="video-wrap">
-                    <iframe src="https://www.youtube.com/embed/mx4ETdiBaIQ" title="Chinese New Year video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    <iframe src="https://www.youtube.com/embed/giYX7bkzW98" title="Chinese New Year video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
             </div>
 
             <div class="panel-slider">
-                <div class="card panel-card">
-                    <h3 class="card-title"><i class="ri-time-line"></i> Timeline</h3>
-                    <div class="card-content">
-                        <div class="timeline-item">
-                            <span class="timeline-phase">Before</span>
-                            Cleaning house to sweep away bad luck, buying new clothes, prepping lucky dishes.
-                        </div>
-                        <div class="timeline-item">
-                            <span class="timeline-phase">During</span>
-                            Reunion dinner, Red envelopes (hongbao), watching Galas, staying up late (Shousui).
-                        </div>
-                        <div class="timeline-item">
-                            <span class="timeline-phase">After</span>
-                            Temple fairs and the Lantern Festival ending the season.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card panel-card">
-                    <h3 class="card-title"><i class="ri-heart-pulse-fill"></i> Why it Matters</h3>
-                    <div class="card-content" style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-                        <p>It represents a fresh start, good fortune, and the strengthening of family ties above all else.</p>
-                        <div style="margin-top:20px;">
-                            <strong>Fun Fact:</strong>
-                            <p style="font-size:0.9rem; margin-top:5px;">The "Nian" monster is said to be afraid of loud sounds and the color red.</p>
-                        </div>
-                    </div>
+                <div class="canva-embed-wrap">
+                    <iframe
+                        src="https://www.canva.com/design/DAHBxmeuL6I/2QquZgcFn27vvQy3gKZCcQ/view?embed"
+                        allowfullscreen="allowfullscreen"
+                        allow="fullscreen"
+                        loading="lazy"
+                        title="Spring Festival Canva Design">
+                    </iframe>
                 </div>
             </div>
 
@@ -777,29 +745,19 @@
         <div class="bento-grid">
             <div class="card video-card">
                 <div class="video-wrap">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=mid-autumn%20festival" title="Mid-Autumn Festival video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    <iframe src="https://www.youtube.com/embed/mx4ETdiBaIQ" title="Mid-Autumn Festival video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
             </div>
 
             <div class="panel-slider">
-                <div class="card panel-card">
-                    <h3 class="card-title"><i class="ri-goblet-fill"></i> The Experience</h3>
-                    <div class="timeline-item">
-                        <span class="timeline-phase">During the Night</span>
-                        Family gatherings for dinner and "moon viewing." Sharing mooncakes cut into slices to symbolize unity.
-                    </div>
-                    <div class="timeline-item">
-                        <span class="timeline-phase">Traditions</span>
-                        Kids playing with lanterns, offerings to the moon, and sharing mooncake gift boxes with friends.
-                    </div>
-                </div>
-
-                <div class="card panel-card">
-                    <h3 class="card-title"><i class="ri-book-open-fill"></i> Myth & Meaning</h3>
-                    <div class="card-content">
-                        <p><strong>Meaning:</strong> Gratitude and wishing loved ones well, even if they are far away.</p>
-                        <p style="margin-top:15px"><strong>Legend:</strong> The story of Chang’e flying to the moon is the most famous myth associated with this night.</p>
-                    </div>
+                <div class="canva-embed-wrap">
+                    <iframe
+                        src="https://www.canva.com/design/DAG_8uhbGu4/zpsnyKhjp_kQGAyt74HqeQ/view?embed"
+                        allowfullscreen="allowfullscreen"
+                        allow="fullscreen"
+                        loading="lazy"
+                        title="Mid-Autumn Festival Canva Design">
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -821,29 +779,14 @@
             </div>
 
             <div class="panel-slider">
-                <div class="card panel-card">
-                    <h3 class="card-title"><i class="ri-flag-fill"></i> Action Plan</h3>
-                    <div class="card-content">
-                        <div class="timeline-item">
-                            <span class="timeline-phase">Before</span>
-                            Teams practice racing; families prepare ingredients for Zongzi. Protection herbs hung at doors.
-                        </div>
-                        <div class="timeline-item">
-                            <span class="timeline-phase">The Race</span>
-                            Dragon boat races featuring teamwork, speed, and thunderous drums.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card panel-card">
-                    <h3 class="card-title"><i class="ri-honour-fill"></i> Memorial</h3>
-                    <div class="card-content">
-                        <p>Often linked to remembering Qu Yuan (a poet and minister), plus themes of loyalty, community spirit, and health protection.</p>
-                        <div class="section-note">
-                            <small>DID YOU KNOW?</small>
-                            <p style="font-size:0.9rem;">One of the most energetic festivals visually—perfect for photography.</p>
-                        </div>
-                    </div>
+                <div class="canva-embed-wrap">
+                    <iframe
+                        src="https://www.canva.com/design/DAHBxi0vt4w/a1ciH0V3wo1C93LbtGi-mQ/view?embed"
+                        allowfullscreen="allowfullscreen"
+                        allow="fullscreen"
+                        loading="lazy"
+                        title="Dragon Boat Festival Canva Design">
+                    </iframe>
                 </div>
             </div>
 
